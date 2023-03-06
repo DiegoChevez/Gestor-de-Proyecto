@@ -1,4 +1,4 @@
-package com.telecomunicaciones.sv.vistas;
+package sv.com.telecomunicaciones.vistas;
 
 import com.sun.tools.javac.Main;
 

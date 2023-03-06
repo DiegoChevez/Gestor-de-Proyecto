@@ -1,4 +1,4 @@
-package com.telecomunicaciones.sv.vistas.programador;
+package sv.com.telecomunicaciones.vistas.programador;
 
 import javax.swing.*;
 
