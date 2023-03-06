@@ -4,7 +4,7 @@ import java.sql.*;
  * Clase Conexion JDBC
  * @author Rafael Torres
  */
-public class Conexcion {
+public class Conexion {
 	//Valores de conexion a MySql
 	private static String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 	//El puerto es opcional
