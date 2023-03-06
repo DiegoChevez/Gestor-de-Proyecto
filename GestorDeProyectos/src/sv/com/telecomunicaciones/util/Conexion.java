@@ -1,4 +1,4 @@
 package sv.com.telecomunicaciones.util;
 
-public class Conexcion {
+public class Conexion {
 }
