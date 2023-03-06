@@ -37,9 +37,6 @@
 			-Devolverlos
 			-Aprobarlos
 
-
-
-
 --Modulo para el envio de un nuevo cosa (Formulario, mostras todos los casos enviados y sus estados)
 
 --Modulo del jefe: Mostrar todos los casos enviados y que se encuentren en espera donde el pueda acceder a la informacion de cada uno, ademas de poder cambiar su estado de casa solicitud.(Cambiar Estado y Enviar las notas para cada caso y su respectivo estado). Cada jefe puede visualizar su equipo, personas las cuales esten a su mando(Un modulo mas donde el jefe asigne a este nuevo caso un programador de su grupo, la fecha estimada para estar listo, y el tester del area donde se recibio el caso)
@@ -47,3 +44,4 @@
 --Modulo del programador: Mostrar todos sus casos asignados los hechosy los que estan en desarrollo por cada caso debe de tener una apartado de sus bitacoras. Crear un modulo formulario donde el programador debe llenar como bitacora. Cuando el programador de como finalizado su caso debere tener el poder para cambiar el estado de desarrollo a Esperando Aprovacion. Si se llega a la fecha de finizalicion y aun no se culmina automaticamente el caso debera de ponerse en vencido y sin acceso al programador.
 
 --La persona tester: debera mostrarse un modulo donde pueda testear y aprobar dicho caso que se le asigno a testear, el podra carmbiar el estado del caso a aprobado o rechazado, ademas de que podra subir sus argumento para dicho estado del caso, ademas de que este caso es devuellto al programador donde este tiene 7 dias para terminar con los punto a solucionar y regresarlo, cabe destacar que para esta fase de devolucion tendra que tener un control de bitacora para este estado.
+
