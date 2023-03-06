@@ -1,4 +1,5 @@
 package sv.com.telecomunicaciones.util;
+<<<<<<< HEAD
 import java.sql.*;
  /**
  * Clase Conexion JDBC
@@ -62,3 +63,8 @@ public class Conexion {
 		}
 	}
 }
+=======
+
+public class Conexion {
+}
+>>>>>>> Valencia
