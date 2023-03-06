@@ -1,0 +1,49 @@
+1-Login (roles)
+2-Home (roles)
+	-Menu
+
+
+-Modulo Administrador
+	-Menu
+		-Agregar/Eliminar Programadores (Formulario)
+		-Agregar Usuarios (Formulario)
+
+-Modulo Jefe de Area
+	-Menu
+		-Nuevo Solicitud(Formulario)
+		-Casos En Espera (Tabla con aquellos casos donde el estado sea "En Espera")
+		-Casos en Desarrollo (Tabla con aquellos casos en donde el estado sea "En Desarrollo)
+		-Casos Rechazados (Tabla con aquellos casos en donde el estado sea "Rechazado")
+		-Casos Enviados (Tabla con todos los casos ordenado por recientes)
+
+
+-Modulo Jefe de Desarrollo
+	-Menu
+		-Nuevos Casos Recibidos(Tabla con aquellos casos donde el estado sea "En Espera")
+			-Analisis del Caso (Al entrar le apareceran los datos del caso ademas de un apartado donde el podra agregar notas y cambiar el estado despues del dicho analisis, 						ademas de que en caso de aprovar se le pedira que dicho caso se le asigne a un prgramador)
+		-Todos los casos recibidos (Tabla con todos los casos ordenado por recientes, el podra visualizar los datos del caso (Estado, Notas del caso y Comentarios))
+
+-Modulo del programador
+	-Menu
+		-Casos Recibidos
+			-Llenar Bitacora
+			-Asignar Avances
+			-Enviar al tester asignado
+		-Todos los casos asignados
+		
+-Modulo Tester
+	-Menu
+		--Casos Recibidos
+			-Devolverlos
+			-Aprobarlos
+
+
+
+
+--Modulo para el envio de un nuevo cosa (Formulario, mostras todos los casos enviados y sus estados)
+
+--Modulo del jefe: Mostrar todos los casos enviados y que se encuentren en espera donde el pueda acceder a la informacion de cada uno, ademas de poder cambiar su estado de casa solicitud.(Cambiar Estado y Enviar las notas para cada caso y su respectivo estado). Cada jefe puede visualizar su equipo, personas las cuales esten a su mando(Un modulo mas donde el jefe asigne a este nuevo caso un programador de su grupo, la fecha estimada para estar listo, y el tester del area donde se recibio el caso)
+
+--Modulo del programador: Mostrar todos sus casos asignados los hechosy los que estan en desarrollo por cada caso debe de tener una apartado de sus bitacoras. Crear un modulo formulario donde el programador debe llenar como bitacora. Cuando el programador de como finalizado su caso debere tener el poder para cambiar el estado de desarrollo a Esperando Aprovacion. Si se llega a la fecha de finizalicion y aun no se culmina automaticamente el caso debera de ponerse en vencido y sin acceso al programador.
+
+--La persona tester: debera mostrarse un modulo donde pueda testear y aprobar dicho caso que se le asigno a testear, el podra carmbiar el estado del caso a aprobado o rechazado, ademas de que podra subir sus argumento para dicho estado del caso, ademas de que este caso es devuellto al programador donde este tiene 7 dias para terminar con los punto a solucionar y regresarlo, cabe destacar que para esta fase de devolucion tendra que tener un control de bitacora para este estado.
