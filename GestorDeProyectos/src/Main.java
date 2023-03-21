@@ -1,5 +1,9 @@
+import sv.com.telecomunicaciones.vistas.Login;
+import javax.swing.JFrame;
+
 public class Main {
 	public static void main(String[] args) {
-		System.out.println("Hello world!");
+		Login login = new Login("title");
+		login.setVisible(true);
 	}
 }
