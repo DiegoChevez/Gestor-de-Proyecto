@@ -1,7 +1,6 @@
 package sv.com.telecomunicaciones.vistas;
-
 import sv.com.telecomunicaciones.util.ConexionSQL;
-import sv.com.telecomunicaciones.vistas.administrador.MenuAdministrador;
+
 
 import javax.swing.*;
 import java.awt.*;
