@@ -10,7 +10,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.*;
-import sv.com.telecomunicaciones.bins.DesarrolladorBeans.DesarrolladorBins;
 
 
 public class AsignarProgramador extends JFrame{
@@ -30,6 +29,8 @@ public class AsignarProgramador extends JFrame{
     private JButton btnAtras;
     private JTextField txtFecha;
     private JLabel lblfecha;
+    private JTextArea txtaDescripcion2;
+    private JTextArea txtaComentarios;
 
     private String idSolicitudP;
 
@@ -50,7 +51,7 @@ public class AsignarProgramador extends JFrame{
 
     public void setDescripcionP(String descripcionP){
         this.descripcionP = descripcionP;
-        txtDescrpcion.setText(descripcionP);
+        txtaDescripcion2.setText(descripcionP);
     }
     /*Termina el asignar*/
 
@@ -91,38 +92,41 @@ public class AsignarProgramador extends JFrame{
     public void enviarAsignado(){
         String id = txtId.getText();
         String estado = "En desarrollo";
-        String comentario = txtComentarios.getText();
+        String comentario = txtaComentarios.getText();
         String fecha = txtFecha.getText();
         Calendar cal = Calendar.getInstance();
-
-        try {
-            // Paso 1: verificar el formato de la fecha
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            dateFormat.setLenient(false); // para que la validación sea estricta
-            Date date = dateFormat.parse(txtFecha.getText());
-
-            // Paso 2: crear una instancia de Calendar y establecer la fecha
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-
-            // Paso 3: verificar que los valores de día, mes y año sean válidos
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            int month = calendar.get(Calendar.MONTH) + 1; // sumar 1 porque los meses en Calendar van de 0 a 11
-            int year = calendar.get(Calendar.YEAR);
-            if (day != calendar.getActualMaximum(Calendar.DAY_OF_MONTH) || month < 1 || month > 12 || year < 0 || year > 9999) {
-                Date today = new Date();
-                if (date.compareTo(today) < 0 ) {
-                    JOptionPane.showMessageDialog(null,"La fecha es incorrecta");
-                }else{
-                    JOptionPane.showMessageDialog(null,"Fecha correcta");
+            try {
+                if (txtFecha.getText().trim().isEmpty() || txtaComentarios.getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null,"Rellene los campos solicitados");
+                } else {
+                    // Paso 1: verificar el formato de la fecha
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    dateFormat.setLenient(false); // para que la validación sea estricta
+                    Date date = dateFormat.parse(txtFecha.getText());
+                    // Paso 2: crear una instancia de Calendar y establecer la fecha
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(date);
+                    // Paso 3: verificar que los valores de día, mes y año sean válidos
+                    int day = calendar.get(Calendar.DAY_OF_MONTH);
+                    int month = calendar.get(Calendar.MONTH) + 1; // sumar 1 porque los meses en Calendar van de 0 a 11
+                    int year = calendar.get(Calendar.YEAR);
+                    if (day != calendar.getActualMaximum(Calendar.DAY_OF_MONTH) || month < 1 || month > 12 || year < 0 || year > 9999) {
+                        Date today = new Date();
+                        if (date.compareTo(today) < 0) {
+                            JOptionPane.showMessageDialog(null, "Complete com los datos correctos");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Fecha correcta");
+                        }
+                    }
                 }
+            } catch (ParseException e) {
+                JOptionPane.showMessageDialog(null,"La fecha es incorrecta");
             }
-        } catch (ParseException e) {
-            JOptionPane.showMessageDialog(null,"La fecha es incorrecta");
-        }
-        String programador = (String) cmbAsignar.getSelectedItem();
-        JOptionPane.showMessageDialog(null,"El programador es " +programador+ "Su comentario fue " +comentario+ "Y la fecha de finalizacion es " +fecha+ "Y el ID es"+id);
+            String programador = (String) cmbAsignar.getSelectedItem();
+            JOptionPane.showMessageDialog(null,"El programador es " +programador+ "Su comentario fue " +comentario+ "Y la fecha de finalizacion es " +fecha+ "Y el ID es"+id);
     }
+
+
         /*Fin Enviar*/
 
     public static void main(String[] args) {

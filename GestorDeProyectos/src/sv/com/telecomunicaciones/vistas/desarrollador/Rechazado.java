@@ -19,6 +19,8 @@ public class Rechazado extends JFrame{
     private JButton btnAtras;
     private String IdCaso;
     private String Solicitante;
+    private String title;
+
     public Rechazado(String title){
 
         super(title);
@@ -37,18 +39,30 @@ public class Rechazado extends JFrame{
         btnEnviar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 enviarRechazo();
             }
         });
     }
     public void enviarRechazo(){
+        if (txtaRazon.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Ingrese la razon del rechazo");
+        } else {
+            String id = txtIdCaso.getText();
+            String razon;
+            razon = txtaRazon.getText();
+            String rechazado = "rechazado";
+            JOptionPane.showMessageDialog(null, "El ID del caso es "+id+ "Y la razon del rechazo fue" + razon + "Y su estado ahora esta" +rechazado);
 
-        String id = txtIdCaso.getText();
-        String razon;
-        razon = txtaRazon.getText();
-        String rechazado = "rechazado";
-        JOptionPane.showMessageDialog(null, "El ID del caso es "+id+ "Y la razon del rechazo fue" + razon + "Y su estado ahora esta" +rechazado);
+            MenuNSolicitudes menuNSolicitudes = new MenuNSolicitudes(title);
+            menuNSolicitudes.setVisible(true);
+            dispose();
+
+        }
+
     }
+
+
     public void setTxtIdCaso(String IdCaso) {
         this.IdCaso = IdCaso;
         txtIdCaso.setText(IdCaso);

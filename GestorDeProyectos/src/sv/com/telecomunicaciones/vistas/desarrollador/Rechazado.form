@@ -33,7 +33,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
       </component>
       <component id="d4814" class="javax.swing.JLabel" binding="lblSolicitante">
         <constraints>
@@ -50,7 +52,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <editable value="false"/>
+        </properties>
       </component>
       <component id="5e4fe" class="javax.swing.JLabel" binding="lblRazon">
         <constraints>
