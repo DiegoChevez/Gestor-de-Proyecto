@@ -1,4 +1,4 @@
-package sv.com.telecomunicaciones.metodos;
+package sv.com.telecomunicaciones.metodos.metodosdesarrollador;
 import sv.com.telecomunicaciones.util.ConexionC;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,8 +9,8 @@ public class MenuNSolicitudesDatos {
     private final String SQL_UPDATE = "UPDATE persona SET nombre_persona=?, edad_persona=?, telefono_persona=?, sexo_persona=?, id_ocupacion=?, fecha_nac=? WHERE id_persona=?";
     private final String SQL_DELETE = "DELETE FROM persona WHERE id_persona = ?";
 
-    String areaEmpleado = "General";
-    private final String SQL_SELECT ="SELECT Id_Caso,empleados.Nombres,DescripcionCaso,areas.Area FROM casos INNER JOIN empleados ON casos.Encargado = empleados.Id_Empleado INNER JOIN areas ON empleados.Area = areas.Id_Area WHERE areas.Area = '"+areaEmpleado+"'";
+    String areaEmpleado = "Finanzas";
+    private final String SQL_SELECT ="SELECT casos.Id_Caso, casos.Encargado AS IdEncargado, CONCAT(empleados.Nombres,' ',empleados.Apellidos) AS Encargado,casos.DescripcionCaso FROM casos INNER JOIN Empleados ON casos.Encargado = Empleados.Id_Empleado WHERE casos.estado = 'en espera de respuesta'";
 
     public DefaultTableModel selectSolicitud(){
         DefaultTableModel dtm = new DefaultTableModel();

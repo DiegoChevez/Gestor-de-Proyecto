@@ -1,7 +1,7 @@
 package sv.com.telecomunicaciones.vistas.desarrollador;
 
-import sv.com.telecomunicaciones.bins.DesarrolladorBins;
-import sv.com.telecomunicaciones.metodos.MenuNSolicitudesDatos;
+import sv.com.telecomunicaciones.bins.DesarrolladorBeans.DesarrolladorBins;
+import sv.com.telecomunicaciones.metodos.metodosdesarrollador.MenuNSolicitudesDatos;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -32,7 +32,6 @@ public class MenuNSolicitudes extends JFrame{
     DefaultTableModel modelo=null;
     DesarrolladorBins desarrolladorBeans = null;
     MenuNSolicitudesDatos menuNSolicitudesDatos = new MenuNSolicitudesDatos();
-
     public MenuNSolicitudes(String title){
 
         super(title);
@@ -49,30 +48,45 @@ public class MenuNSolicitudes extends JFrame{
         btnMenu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object evt = e.getSource();
-                if (evt.equals(btnMenu)){
+
                     MenuDesarrollador menuDesarrollador = new MenuDesarrollador(title);
                     menuDesarrollador.setVisible(true);
                     dispose();
-                }
+
             }
         });
 
         btnAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object evt = e.getSource();
-                if (evt.equals(btnAceptar)){
+                    if (txtIdSolicitud.getText().isEmpty()){
+                        JOptionPane.showMessageDialog(null,"Seleccione un caso");
+                    }else{
                     AsignarProgramador asignarProgramador = new AsignarProgramador(title);
-                    asignarProgramador.setIdSPro(txtIdSolicitud.getText());
                     asignarProgramador.setTxtSolicitante(txtIdSolicitante.getText());
                     asignarProgramador.setDescripcionP(txtaDescripcion.getText());
+                    asignarProgramador.setIdSPro(txtIdSolicitud.getText());
                     asignarProgramador.setVisible(true);
                     dispose();
+                    }
                 }
-            }
         });
 
+        btnRechazar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (txtIdSolicitud.getText().isEmpty()){
+                    JOptionPane.showMessageDialog(null,"Seleccione un caso");
+                }else{
+                    Rechazado rechazado = new Rechazado(title);
+                    rechazado.setTxtIdCaso(txtIdSolicitud.getText());
+                    rechazado.setTxtSolicitante(txtIdSolicitante.getText());
+                    rechazado.setVisible(true);
+                    dispose();
+                }
+
+            }
+        });
         tblSolicitudes.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -81,21 +95,16 @@ public class MenuNSolicitudes extends JFrame{
                 tblObtenerSolicitudes(e);
             }
         });
-        btnAceptar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
 
-            }
-        });
     }
     public void tblObtenerSolicitudes(MouseEvent e){
         int fila = tblSolicitudes.rowAtPoint(e.getPoint());
         int columna = tblSolicitudes.columnAtPoint(e.getPoint());
         if ((fila > -1) && (columna > -1)){
             txtIdSolicitud.setText(modelo.getValueAt(fila,0).toString());
-            txtaDescripcion.setText(modelo.getValueAt(fila,2).toString());
             txtIdSolicitante.setText(modelo.getValueAt(fila,1).toString());
+            txtaDescripcion.setText(modelo.getValueAt(fila,2).toString());
         }
     }
 

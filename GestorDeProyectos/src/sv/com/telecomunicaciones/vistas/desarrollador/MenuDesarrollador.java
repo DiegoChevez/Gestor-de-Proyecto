@@ -18,17 +18,12 @@ public class MenuDesarrollador extends JFrame {
             this.setContentPane(pnlDesarrollador);
             this.setMinimumSize(new Dimension(600, 500));
             this.setLocationRelativeTo(getParent());
-
         btnSolicitudes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Object evt = e.getSource();
-                if (evt.equals(btnSolicitudes)){
                     MenuNSolicitudes menuNSolicitudes = new MenuNSolicitudes(title);
                     menuNSolicitudes.setVisible(true);
                     dispose();
-                }
-
             }
         });
 

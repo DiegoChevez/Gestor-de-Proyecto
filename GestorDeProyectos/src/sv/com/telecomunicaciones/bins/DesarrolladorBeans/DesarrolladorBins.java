@@ -1,5 +1,7 @@
-package sv.com.telecomunicaciones.bins;
+package sv.com.telecomunicaciones.bins.DesarrolladorBeans;
 
+
+import javax.swing.*;
 
 public class DesarrolladorBins {
 
@@ -7,7 +9,9 @@ public class DesarrolladorBins {
             String solicitante;
             String descripcion;
             String estado;
+            String idSolicitudP;
 
+    private JTextField txtId;
 
             public DesarrolladorBins(String idCaso, String solicitante, String descripcion, String estado){
                 this.idCaso = idCaso;
@@ -15,6 +19,8 @@ public class DesarrolladorBins {
                 this.descripcion = descripcion;
                 this.estado = estado;
             }
+
+
 
     public String getIdCaso() {
 
@@ -48,5 +54,11 @@ public class DesarrolladorBins {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String setIdSPro(String idSolicitudP){
+        this.idSolicitudP = idSolicitudP;
+        txtId.setText(idSolicitudP);
+        return idSolicitudP;
     }
 }

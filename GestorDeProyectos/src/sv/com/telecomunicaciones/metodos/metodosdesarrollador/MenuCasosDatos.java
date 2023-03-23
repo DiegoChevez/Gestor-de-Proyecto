@@ -1,14 +1,12 @@
-package sv.com.telecomunicaciones.metodos;
+package sv.com.telecomunicaciones.metodos.metodosdesarrollador;
 import sv.com.telecomunicaciones.util.ConexionC;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 
 public class MenuCasosDatos {
 
-    String areaEmpleado = "Finanzas";
-    private final String SQL_SELECT ="";
-
-
+    String areaEmpleado = "General";
+    private final String SQL_SELECT ="SELECT * FROM casos";
 
     public DefaultTableModel selectCaso(){
         DefaultTableModel dtm = new DefaultTableModel();
