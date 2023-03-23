@@ -50,14 +50,8 @@ public class VistasModulos {
 			case "Programadores":
 				JOptionPane.showMessageDialog(null, "Usted es un programador", "Programador",
 						JOptionPane.INFORMATION_MESSAGE);
-
-<<<<<<< HEAD
 				MenuProgramador menuProgramador = new MenuProgramador("Dashboard - Programador",idUsuario,
 						idTrabajador,rolTrabajador,areaTrabajador);
-				Login login = new Login("Login");
-=======
-				MenuProgramador menuProgramador = new MenuProgramador("Dashboard - Programador");
->>>>>>> 1cdaa05b3d9a5a623cf05e12693ba6522499aee1
 				login.dispose();
 				menuProgramador.setVisible(true);
 				break;
