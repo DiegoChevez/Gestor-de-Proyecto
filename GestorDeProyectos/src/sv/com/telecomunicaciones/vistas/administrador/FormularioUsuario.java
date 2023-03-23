@@ -17,6 +17,8 @@ public class FormularioUsuario extends JFrame {
 
     private String nameUser;
     private String surnameUser;
+
+
 private String name;
 
     @Override
