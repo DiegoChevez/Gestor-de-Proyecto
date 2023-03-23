@@ -2,6 +2,7 @@ package sv.com.telecomunicaciones.metodos.login;
 
 import sv.com.telecomunicaciones.vistas.Login;
 import sv.com.telecomunicaciones.vistas.programador.MenuProgramador;
+import sv.com.telecomunicaciones.vistas.desarrollador.MenuDesarrollador;
 
 import javax.swing.*;
 
@@ -17,6 +18,8 @@ public class VistasModulos {
 		this.idTrabajador=idEmpleado;
 		this.rolEmpleado = rolEmpleado;
 		this.areaEmpleado = areaEmpleado;
+
+		Login login = new Login("Login");
 
 		switch(rolEmpleado) {
 			case "Administrador":
@@ -34,8 +37,9 @@ public class VistasModulos {
 			case "Jefe de Desarrollo":
 				JOptionPane.showMessageDialog(null, "Usted es un Jefe de Desarrollo", "Jefe de Desarrollo",
 						JOptionPane.INFORMATION_MESSAGE);
-				/*MenuDesarrollador MenuDev = new MenuDesarrollador("title");
-				MenuDev.setVisible(true);*/
+				MenuDesarrollador menuDesarrollador = new MenuDesarrollador("title");
+				menuDesarrollador.setVisible(true);
+				login.dispose();
 				break;
 			case "Empleado":
 				JOptionPane.showMessageDialog(null, "Usted es un Empleado", "Empleado",
@@ -48,7 +52,6 @@ public class VistasModulos {
 						JOptionPane.INFORMATION_MESSAGE);
 
 				MenuProgramador menuProgramador = new MenuProgramador("Dashboard - Programador");
-				Login login = new Login("Login");
 				login.dispose();
 				menuProgramador.setVisible(true);
 				break;
