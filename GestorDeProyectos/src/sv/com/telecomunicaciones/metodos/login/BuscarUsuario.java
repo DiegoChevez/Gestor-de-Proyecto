@@ -1,5 +1,7 @@
 package sv.com.telecomunicaciones.metodos.login;
 import sv.com.telecomunicaciones.util.ConexionSQL;
+import sv.com.telecomunicaciones.bins.loginBeans.LoginBeans;
+import sv.com.telecomunicaciones.vistas.Login;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -46,20 +48,35 @@ public class BuscarUsuario {
 						username = rs.getString("Usuario");
 						passwdUser = rs .getString("Contrasena");
 						status = rs.getString("Estado");
+
+						//Guardar datos
+						LoginBeans loginBeans = new LoginBeans();
+
+						loginBeans.setIdUsuario(idUser);
+						loginBeans.setIdTrabajador(idEmpleado);
+						loginBeans.setUsername(username);
+						loginBeans.setUserpass(passwdUser);
+						loginBeans.setEstado(status);
+
 						BuscarEmpleado buscarEmpleado = new BuscarEmpleado();
 						buscarEmpleado.BuscarEmpleado(idUser,idEmpleado,username,passwdUser,status);
-						st.close();
-						rs.close();
-						System.out.println("ID Usuario: "+idUser+"\n" +"ID Empleado: "+idEmpleado+"\n" + "Usuario: " + username+ "\n" + "Contraseña: " + passwdUser+"\n" + "Estado: " +status+"\n");
+
 						break;
 					case 2:
 						JOptionPane.showMessageDialog(null, "Credenciales Incorrectas" );
+						Login login = new Login("Gestor DEVDEV");
+						login.setVisible(true);
 						break;
 				}
 
 			}else {
 				JOptionPane.showMessageDialog(null, "Usuario no existe" );
+				Login login = new Login("Gestor DEVDEV");
+				login.setVisible(true);
 			}
+			//Cerrar conexiones
+			st.close();
+			rs.close();
 
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error"+ e.getMessage() );

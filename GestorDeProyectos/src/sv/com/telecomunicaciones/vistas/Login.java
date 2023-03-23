@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.*;
 
 public class Login extends JFrame {
 
@@ -16,6 +15,7 @@ public class Login extends JFrame {
 	private JPanel pnlLogin;
 	private JLabel alertUser;
 	private JLabel alertPasswd;
+	private JButton btbCerrarSesion;
 
 
 	public Login(String title) {
@@ -34,12 +34,14 @@ public class Login extends JFrame {
 				//Instanciamos nuestro metodo
 				ValidacionLogin validacionLogin = new ValidacionLogin();
 				validacionLogin.ValidacionLogin(txtUser,txtPasswd);
+				dispose();
 			}
 		});
-	}
-
-
-	private void createUIComponents() {
-		// TODO: place custom component creation code here
+		btbCerrarSesion.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 	}
 }

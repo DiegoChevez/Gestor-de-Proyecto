@@ -47,12 +47,10 @@ public class VistasModulos {
 				JOptionPane.showMessageDialog(null, "Usted es un programador", "Programador",
 						JOptionPane.INFORMATION_MESSAGE);
 
-				JFrame menuProgramador = new MenuProgramador("Dashboard - Programador");
-				JFrame login = new Login("Login");
+				MenuProgramador menuProgramador = new MenuProgramador("Dashboard - Programador");
+				Login login = new Login("Login");
 				login.dispose();
 				menuProgramador.setVisible(true);
-
-
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "Usted no es un empleado", "ERROR", JOptionPane.ERROR_MESSAGE);

@@ -1,5 +1,6 @@
 package sv.com.telecomunicaciones.metodos.login;
 import sv.com.telecomunicaciones.util.ConexionSQL;
+import sv.com.telecomunicaciones.bins.loginBeans.LoginBeans;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -10,6 +11,7 @@ import java.sql.Statement;
 public class BuscarEmpleado {
 	ConexionSQL conexion = new ConexionSQL();
 	Connection con = conexion.conexion();
+
 	private int idUsuario;
 	private int idTrabajador;
 	private String username;
@@ -50,25 +52,26 @@ public class BuscarEmpleado {
 					rolEmpleado = rs.getString("RolEmpleado");
 					areaEmpleado = rs.getString("AreaEmpleado");
 
+					//Guardar Datos
+					LoginBeans loginBeans = new LoginBeans();
+					loginBeans.setNombresUser(nombresUser);
+					loginBeans.setApellidosUser(apellidosUser);
+					loginBeans.setRolEmpleado(rolEmpleado);
+					loginBeans.setAreaEmpleado(areaEmpleado);
+
 					VistasModulos vistasModulos = new VistasModulos();
 					vistasModulos.VistasModulos(idUsuario,idTrabajador,rolEmpleado,areaEmpleado);
-
-					st.close();
-					rs.close();
-					System.out.println("Nombres: "+nombresUser+"\n"+
-							"Apellidos: "+apellidosUser+"\n"+
-							"rolEmpleado: "+rolEmpleado+"\n"+
-							"areaEmpleado: "+areaEmpleado+"\n");
 
 				}
 			}else {
 				JOptionPane.showMessageDialog(null, "No se encontro el empleado" );
 			}
+			st.close();
+			rs.close();
 
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, "Error "+e.getMessage() );
 		}
-
 
 	}
 

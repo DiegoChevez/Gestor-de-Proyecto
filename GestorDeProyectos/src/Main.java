@@ -3,7 +3,7 @@ import javax.swing.JFrame;
 
 public class Main {
 	public static void main(String[] args) {
-		Login login = new Login("title");
+		Login login = new Login("Gestor DEVDEV");
 		login.setVisible(true);
 	}
 }
