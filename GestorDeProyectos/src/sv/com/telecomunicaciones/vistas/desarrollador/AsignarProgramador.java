@@ -31,12 +31,18 @@ public class AsignarProgramador extends JFrame{
     private JLabel lblfecha;
     private JTextArea txtaDescripcion2;
     private JTextArea txtaComentarios;
-
     private String idSolicitudP;
-
     private String solicitanteP;
-
     private String descripcionP;
+    int idUsuario;
+    int idTrabajador;
+    String rolTrabajador;
+    String areaTrabajador;
+    String id = txtId.getText();
+    String estado = "En desarrollo";
+    String comentario = txtaComentarios.getText();
+    String fecha = txtFecha.getText();
+    Calendar cal = Calendar.getInstance();
 
     /*Asignar las variables del menu de eleccion de solicitud al menu de asignar programador*/
 
@@ -57,8 +63,17 @@ public class AsignarProgramador extends JFrame{
 
     SeleccionarProgramadorDatos seleccionarProgramadorDatos = new SeleccionarProgramadorDatos();
 
-    public AsignarProgramador(String title) {
+    public AsignarProgramador(String title,int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado) {
+
+
+
         super(title);
+        this.idUsuario = idUser;
+        this.idTrabajador = idEmpleado;
+        this.rolTrabajador = rolEmpleado;
+        this.areaTrabajador = areaEmpleado;
+
+        System.out.println(idUser+""+idEmpleado+rolEmpleado+areaEmpleado);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(pnlProgram);
         this.setMinimumSize(new Dimension(600, 500));
@@ -69,19 +84,17 @@ public class AsignarProgramador extends JFrame{
         btnAtras.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuNSolicitudes menuNSolicitudes = new MenuNSolicitudes(title);
+                MenuNSolicitudes menuNSolicitudes = new MenuNSolicitudes("Menu Nuevas Solicitudes", idUsuario, idTrabajador, rolTrabajador, areaTrabajador);
                 menuNSolicitudes.setVisible(true);
                 dispose();
             }
         });
-
-
         /*Enviar: Esto es para hacer el insert, ignorar el JPane y agregar el query*/
         btnEnviar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 enviarAsignado();
-                MenuNSolicitudes menuNSolicitudes = new MenuNSolicitudes(title);
+                MenuNSolicitudes menuNSolicitudes = new MenuNSolicitudes("Menu nuevas solicitudes", idUsuario, idTrabajador, rolTrabajador, areaTrabajador);
                 menuNSolicitudes.setVisible(true);
                 dispose();
             }
@@ -90,11 +103,7 @@ public class AsignarProgramador extends JFrame{
 
 
     public void enviarAsignado(){
-        String id = txtId.getText();
-        String estado = "En desarrollo";
-        String comentario = txtaComentarios.getText();
-        String fecha = txtFecha.getText();
-        Calendar cal = Calendar.getInstance();
+
             try {
                 if (txtFecha.getText().trim().isEmpty() || txtaComentarios.getText().trim().isEmpty()) {
                     JOptionPane.showMessageDialog(null,"Rellene los campos solicitados");
@@ -125,14 +134,5 @@ public class AsignarProgramador extends JFrame{
             String programador = (String) cmbAsignar.getSelectedItem();
             JOptionPane.showMessageDialog(null,"El programador es " +programador+ "Su comentario fue " +comentario+ "Y la fecha de finalizacion es " +fecha+ "Y el ID es"+id);
     }
-
-
         /*Fin Enviar*/
-
-    public static void main(String[] args) {
-        JFrame frame = new AsignarProgramador("Ingreso de Datos");
-        frame.setVisible(true);
-    }
-
-
 }

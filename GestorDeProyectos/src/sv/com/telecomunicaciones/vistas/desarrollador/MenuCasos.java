@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import sv.com.telecomunicaciones.metodos.login.VistasModulos;
 
 
 public class MenuCasos extends  JFrame {
@@ -25,15 +26,32 @@ public class MenuCasos extends  JFrame {
     private JButton btnAtras;
     private JPanel pnlMenuCasos;
 
+    int idUsuario;
+
+    int idTrabajador;
+
+    String rolTrabajador;
+
+    String areaTrabajador;
+
     DefaultTableModel modelo2=null;
 
     DesarrolladorBins desarrolladorBeans = null;
     MenuCasosDatos menuCasosDatos = new MenuCasosDatos();
 
+    VistasModulos vistasModulos = new VistasModulos();
 
-    public MenuCasos(String title){
+
+
+
+    public MenuCasos(String title, int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado){
 
         super(title);
+        this.idUsuario = idUser;
+        this.idTrabajador = idEmpleado;
+        this.rolTrabajador = rolEmpleado;
+        this.areaTrabajador = areaEmpleado;
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(pnlMenuCasos);
         this.setMinimumSize(new Dimension(600, 500));
@@ -52,7 +70,7 @@ public class MenuCasos extends  JFrame {
         btnAtras.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MenuDesarrollador menuDesarrollador = new MenuDesarrollador(title);
+                MenuDesarrollador menuDesarrollador = new MenuDesarrollador("Menu desarrollador", idUsuario, idTrabajador, rolTrabajador, areaTrabajador);
                 menuDesarrollador.setVisible(true);
                 dispose();
 
@@ -77,8 +95,4 @@ public class MenuCasos extends  JFrame {
 
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new MenuCasos("Ingreso de Datos");
-        frame.setVisible(true);
-    }
     }

@@ -28,13 +28,27 @@ public class MenuNSolicitudes extends JFrame{
     private JTextArea txtaDescripcion;
     private JPanel pnlSolicitudes;
 
+    int idUsuario;
+
+    int idTrabajador;
+
+    String rolTrabajador;
+
+    String areaTrabajador;
 
     DefaultTableModel modelo=null;
     DesarrolladorBins desarrolladorBeans = null;
     MenuNSolicitudesDatos menuNSolicitudesDatos = new MenuNSolicitudesDatos();
-    public MenuNSolicitudes(String title){
+    public MenuNSolicitudes(String title, int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado){
 
         super(title);
+        this.idUsuario = idUser;
+        this.idTrabajador = idEmpleado;
+        this.rolTrabajador = rolEmpleado;
+        this.areaTrabajador = areaEmpleado;
+
+        System.out.println(idUser+""+idEmpleado+rolEmpleado+areaEmpleado);
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(pnlSolicitudes);
         this.setMinimumSize(new Dimension(600, 500));
@@ -49,7 +63,7 @@ public class MenuNSolicitudes extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                    MenuDesarrollador menuDesarrollador = new MenuDesarrollador(title);
+                    MenuDesarrollador menuDesarrollador = new MenuDesarrollador("Menu desarrollador", idUsuario, idTrabajador, rolTrabajador, areaTrabajador);
                     menuDesarrollador.setVisible(true);
                     dispose();
 
@@ -62,7 +76,7 @@ public class MenuNSolicitudes extends JFrame{
                     if (txtIdSolicitud.getText().isEmpty()){
                         JOptionPane.showMessageDialog(null,"Seleccione un caso");
                     }else{
-                    AsignarProgramador asignarProgramador = new AsignarProgramador(title);
+                    AsignarProgramador asignarProgramador = new AsignarProgramador("Asignar programador", idUsuario, idTrabajador, rolTrabajador, areaTrabajador);
                     asignarProgramador.setTxtSolicitante(txtIdSolicitante.getText());
                     asignarProgramador.setDescripcionP(txtaDescripcion.getText());
                     asignarProgramador.setIdSPro(txtIdSolicitud.getText());
@@ -78,7 +92,7 @@ public class MenuNSolicitudes extends JFrame{
                 if (txtIdSolicitud.getText().isEmpty()){
                     JOptionPane.showMessageDialog(null,"Seleccione un caso");
                 }else{
-                    Rechazado rechazado = new Rechazado(title);
+                    Rechazado rechazado = new Rechazado("Rechazado", idUsuario, idTrabajador, rolTrabajador, areaTrabajador);
                     rechazado.setTxtIdCaso(txtIdSolicitud.getText());
                     rechazado.setTxtSolicitante(txtIdSolicitante.getText());
                     rechazado.setVisible(true);
@@ -108,11 +122,6 @@ public class MenuNSolicitudes extends JFrame{
         }
     }
 
-
-    public static void main(String[] args) {
-        JFrame frame = new MenuDesarrollador("Ingreso de Datos");
-        frame.setVisible(true);
-    }
 
     public JTextArea getTxtaDescripcion() {
         txtaDescripcion.setBounds(10,50,400,300);

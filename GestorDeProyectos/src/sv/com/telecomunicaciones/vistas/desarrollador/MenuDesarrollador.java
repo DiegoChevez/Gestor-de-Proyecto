@@ -12,8 +12,21 @@ public class MenuDesarrollador extends JFrame {
     private JButton btnSolicitudes;
     private JPanel pnlDesarrollador;
 
-    public MenuDesarrollador(String title){
-            super(title);
+    int idUsuario;
+
+    int idTrabajador;
+
+    String rolTrabajador;
+
+    String areaTrabajador;
+    public MenuDesarrollador(String title, int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado){
+        super(title);
+        this.idUsuario = idUser;
+        this.idTrabajador = idEmpleado;
+        this.rolTrabajador = rolEmpleado;
+        this.areaTrabajador = areaEmpleado;
+
+        System.out.println(idUsuario+""+idTrabajador+rolTrabajador+areaTrabajador);
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setContentPane(pnlDesarrollador);
             this.setMinimumSize(new Dimension(600, 500));
@@ -21,7 +34,7 @@ public class MenuDesarrollador extends JFrame {
         btnSolicitudes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    MenuNSolicitudes menuNSolicitudes = new MenuNSolicitudes(title);
+                    MenuNSolicitudes menuNSolicitudes = new MenuNSolicitudes("Menu Nuevas solicitudes", idUsuario, idTrabajador, rolTrabajador, areaTrabajador);
                     menuNSolicitudes.setVisible(true);
                     dispose();
             }
@@ -32,7 +45,7 @@ public class MenuDesarrollador extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Object evt = e.getSource();
                 if (evt.equals(btnCasos)){
-                    MenuCasos menuCasos = new MenuCasos(title);
+                    MenuCasos menuCasos = new MenuCasos("Menu casos", idUsuario, idTrabajador, rolTrabajador, areaTrabajador);
                     menuCasos.setVisible(true);
                     dispose();
                 }
@@ -41,9 +54,4 @@ public class MenuDesarrollador extends JFrame {
         });
     }
 
-
-    public static void main(String[] args) {
-        JFrame frame = new MenuDesarrollador("Ingreso de Datos");
-        frame.setVisible(true);
-    }
 }

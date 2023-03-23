@@ -4,16 +4,17 @@ import sv.com.telecomunicaciones.util.ConexionC;
 import javax.swing.*;
 import java.sql.*;
 
+
 public class SeleccionarProgramadorDatos{
 
+    String caso;
     String areaEmpleado = "Finanzas";
 
     private final String SQL_SELECT = "SELECT empleados.* FROM empleados INNER JOIN areas ON empleados.Area = areas.Id_Area INNER JOIN roles ON empleados.Rol = roles.Id_Rol WHERE areas.Area = '"+areaEmpleado+"' AND roles.Rol = 'Programadores' AND empleados.Id_Empleado NOT IN (SELECT DISTINCT casos.Encargado FROM casos WHERE casos.Estado='en desarrollo')";
 
+
     public DefaultComboBoxModel selectProgramadores(){
-
         DefaultComboBoxModel dtm = new DefaultComboBoxModel();
-
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -33,5 +34,25 @@ public class SeleccionarProgramadorDatos{
             ConexionC.close(conn);
         }
         return dtm;
+    }
+
+    public void updateCasoJF( String idCaso){
+        this.caso = idCaso;
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        System.out.println(caso);
+        try {
+            conn = ConexionC.getConnection();
+            stmt = conn.prepareStatement("UPDATE casos SET Estado = 'En desarrollo' WHERE Id_Caso ='FNZ23123'");
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConexionC.close(rs);
+            ConexionC.close(stmt);
+            ConexionC.close(conn);
+        }
+        return;
     }
 }

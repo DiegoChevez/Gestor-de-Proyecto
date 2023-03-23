@@ -35,9 +35,9 @@ public class VistasModulos {
 				MenuFun.setVisible(true);*/
 				break;
 			case "Jefe de Desarrollo":
-				JOptionPane.showMessageDialog(null, "Usted es un Jefe de Desarrollo", "Jefe de Desarrollo",
-						JOptionPane.INFORMATION_MESSAGE);
-				MenuDesarrollador menuDesarrollador = new MenuDesarrollador("title");
+				JOptionPane.showMessageDialog(null, "Usted es un Jefe de Desarrollo", "Jefe de Desarrollo", JOptionPane.INFORMATION_MESSAGE);
+
+				MenuDesarrollador menuDesarrollador = new MenuDesarrollador("title", this.idUsuario, idTrabajador,rolEmpleado,areaEmpleado);
 				menuDesarrollador.setVisible(true);
 				login.dispose();
 				break;
