@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 public class JefeDeAreaSolicitud extends JFrame {
 
@@ -18,8 +16,17 @@ public class JefeDeAreaSolicitud extends JFrame {
     private JLabel lblSpace1;
     private JButton BtnRegresar;
 
-    public JefeDeAreaSolicitud(String title) {
+    private int idTrabajador;
+    private int idUsuario;
+    private String rolTrabajador;
+    private String areaTrabajador;
+
+    public JefeDeAreaSolicitud(String title, int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado) {
         super(title);
+        this.idUsuario=idUser;
+        this.idTrabajador=idEmpleado;
+        this.rolTrabajador = rolEmpleado;
+        this.areaTrabajador = areaEmpleado;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(pnlSolicitud);
         this.setMinimumSize(new Dimension(600, 500));
@@ -34,14 +41,10 @@ public class JefeDeAreaSolicitud extends JFrame {
         });
         BtnRegresar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Menu menu = new Menu(title);
+                Menu menu = new Menu("Sistema DEV", idUsuario, idTrabajador, rolEmpleado, areaEmpleado);
                 menu.setVisible(true);
                 dispose();
             }
         });
-    }
-    public static void main(String[] args) {
-        JFrame frame = new JefeDeAreaSolicitud("Jefe de Área");
-        frame.setVisible(true);
     }
     }

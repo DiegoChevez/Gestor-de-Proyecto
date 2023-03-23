@@ -19,8 +19,17 @@ public class Rechazados extends JFrame {
     DefaultTableModel modelo=null;
     Datos datosRechazados = new Datos();
 
-    public Rechazados(String title) throws SQLException {
+    private int idTrabajador;
+    private int idUsuario;
+    private String rolTrabajador;
+    private String areaTrabajador;
+
+    public Rechazados(String title, int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado) throws SQLException {
         super(title);
+        this.idUsuario=idUser;
+        this.idTrabajador=idEmpleado;
+        this.rolTrabajador = rolEmpleado;
+        this.areaTrabajador = areaEmpleado;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(pnlRechazado);
         this.setMinimumSize(new Dimension(600, 500));
@@ -31,16 +40,10 @@ public class Rechazados extends JFrame {
         tblTablaRechazados.setModel(modelo);
         BtnRegresar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Menu menu = new Menu(title);
+                Menu menu = new Menu("Sistema DEV", idUsuario, idTrabajador, rolEmpleado, areaEmpleado);
                 menu.setVisible(true);
                 dispose();
             }
         });
     }
-
-    public static void main(String[] args) throws SQLException {
-        JFrame frame = new Rechazados("Casos en Espera");
-        frame.setVisible(true);
     }
-
-}

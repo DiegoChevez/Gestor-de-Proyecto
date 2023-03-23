@@ -15,8 +15,17 @@ public class Menu extends JFrame {
     private JPanel pnlMenu;
     private JButton BtnCrearSolicitud;
 
-    public Menu(String title) {
+    private int idTrabajador;
+    private int idUsuario;
+    private String rolTrabajador;
+    private String areaTrabajador;
+
+    public Menu(String title, int idUsuario, int idTrabajador, String rolEmpleado, String areaEmpleado) {
         super(title);
+        this.idUsuario=idUsuario;
+        this.idTrabajador=idTrabajador;
+        this.rolTrabajador = rolEmpleado;
+        this.areaTrabajador = areaEmpleado;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(pnlMenu);
         this.setMinimumSize(new Dimension(600, 500));
@@ -27,7 +36,7 @@ public class Menu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 EnDesarrollo enDesarrollo = null;
                 try {
-                    enDesarrollo = new EnDesarrollo(title);
+                    enDesarrollo = new EnDesarrollo("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -40,7 +49,7 @@ public class Menu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 EnEspera enEspera = null;
                 try {
-                    enEspera = new EnEspera(title);
+                    enEspera = new EnEspera("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -54,7 +63,7 @@ public class Menu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Enviados enviados = null;
                 try {
-                    enviados = new Enviados(title);
+                    enviados = new Enviados("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -67,7 +76,7 @@ public class Menu extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Rechazados rechazados = null;
                 try {
-                    rechazados = new Rechazados(title);
+                    rechazados = new Rechazados("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -80,16 +89,10 @@ public class Menu extends JFrame {
         BtnCrearSolicitud.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                JefeDeAreaSolicitud jefeDeAreaSolicitud = new JefeDeAreaSolicitud("Sistema DEV");
+                JefeDeAreaSolicitud jefeDeAreaSolicitud = new JefeDeAreaSolicitud("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
                 jefeDeAreaSolicitud.setVisible(true);
                 dispose();
             }
         });
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new Menu("Menu Funcionales");
-        frame.setVisible(true);
     }
-
-}

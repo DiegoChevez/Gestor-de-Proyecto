@@ -1,6 +1,7 @@
 package sv.com.telecomunicaciones.metodos.login;
 
 import sv.com.telecomunicaciones.vistas.Login;
+import sv.com.telecomunicaciones.vistas.funcionales.Menu;
 import sv.com.telecomunicaciones.vistas.programador.MenuProgramador;
 import sv.com.telecomunicaciones.vistas.desarrollador.MenuDesarrollador;
 
@@ -31,6 +32,9 @@ public class VistasModulos {
 			case "Jefe":
 				JOptionPane.showMessageDialog(null, "Usted es un Jefe de Area", "Jefe de Area",
 						JOptionPane.INFORMATION_MESSAGE);
+				Menu menu = new Menu("title", this.idUsuario, idTrabajador,rolEmpleado,areaEmpleado);
+				menu.setVisible(true);
+				login.dispose();
 				/*MenuFuncionales MenuFun = new MenuFuncionales("title");
 				MenuFun.setVisible(true);*/
 				break;
