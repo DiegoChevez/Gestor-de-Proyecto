@@ -1,6 +1,5 @@
 package sv.com.telecomunicaciones.vistas;
 
-import sv.com.telecomunicaciones.util.ConexionSQL;
 import sv.com.telecomunicaciones.metodos.login.*;
 
 import javax.swing.*;
@@ -23,7 +22,7 @@ public class Login extends JFrame {
 		super(title);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setContentPane(pnlLogin);
-		this.setMinimumSize(new Dimension(600, 600));
+		this.setMinimumSize(new Dimension(400, 600));
 		this.setLocationRelativeTo(getParent());
 
 		btnIngresar.addActionListener(new ActionListener() {
@@ -40,8 +39,7 @@ public class Login extends JFrame {
 	}
 
 
-
-
-
-
+	private void createUIComponents() {
+		// TODO: place custom component creation code here
+	}
 }

@@ -1,9 +1,10 @@
 package sv.com.telecomunicaciones.metodos.login;
 
-import sv.com.telecomunicaciones.util.ConexionSQL;
+import sv.com.telecomunicaciones.vistas.Login;
+import sv.com.telecomunicaciones.vistas.programador.MenuProgramador;
 
 import javax.swing.*;
-import java.sql.Connection;
+
 
 public class VistasModulos {
 	private int idTrabajador;
@@ -46,8 +47,12 @@ public class VistasModulos {
 				JOptionPane.showMessageDialog(null, "Usted es un programador", "Programador",
 						JOptionPane.INFORMATION_MESSAGE);
 
-				/*MenuProgramador MenuProg = new MenuProgramador("title");
-				MenuProg.setVisible(true);*/
+				JFrame menuProgramador = new MenuProgramador("Dashboard - Programador");
+				JFrame login = new Login("Login");
+				login.dispose();
+				menuProgramador.setVisible(true);
+
+
 				break;
 			default:
 				JOptionPane.showMessageDialog(null, "Usted no es un empleado", "ERROR", JOptionPane.ERROR_MESSAGE);
