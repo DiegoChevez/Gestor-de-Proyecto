@@ -1,6 +1,7 @@
 package sv.com.telecomunicaciones.vistas;
-
 import sv.com.telecomunicaciones.metodos.login.*;
+import sv.com.telecomunicaciones.util.ConexionSQL;
+
 
 import javax.swing.*;
 import java.awt.*;
