@@ -4,7 +4,10 @@ import sv.com.telecomunicaciones.metodos.login.*;
 
 
 import sv.com.telecomunicaciones.util.ConexionSQL;
+<<<<<<< HEAD
 
+=======
+>>>>>>> ErickFuentes
 
 import javax.swing.*;
 import java.awt.*;
