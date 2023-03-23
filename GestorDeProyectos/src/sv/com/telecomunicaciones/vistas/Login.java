@@ -1,11 +1,11 @@
 package sv.com.telecomunicaciones.vistas;
-<<<<<<< HEAD
+
 import sv.com.telecomunicaciones.metodos.login.*;
-=======
+
 
 import sv.com.telecomunicaciones.util.ConexionSQL;
 
->>>>>>> AngieValencia
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

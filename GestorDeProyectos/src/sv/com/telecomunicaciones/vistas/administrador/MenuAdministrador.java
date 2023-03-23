@@ -14,9 +14,16 @@ public class MenuAdministrador extends JFrame{
     private JButton btnShow;
     private JButton btnArea;
     private JButton btnEmpleados;
-
-    public MenuAdministrador(String title) {
+    private int idTrabajador;
+    private int idUsuario;
+    private String rolTrabajador;
+    private String areaTrabajador;
+    public MenuAdministrador(String title, int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado) {
         super(title);
+        this.idUsuario=idUser;
+        this.idTrabajador=idEmpleado;
+        this.rolTrabajador = rolEmpleado;
+        this.areaTrabajador = areaEmpleado;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(pnlAdmin);
         this.setMinimumSize(new Dimension(600,600));
@@ -26,7 +33,7 @@ public class MenuAdministrador extends JFrame{
         btnUsuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Usuarios User=new Usuarios ("Usuarios");
+                Usuarios User=new Usuarios ("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
                 User.setVisible(true);
                 dispose();
 
@@ -37,7 +44,7 @@ public class MenuAdministrador extends JFrame{
         btnArea.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AgregarArea addArea=new  AgregarArea("Agregar Area");
+                AgregarArea addArea=new  AgregarArea("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
                 addArea.setVisible(true);
                 dispose();
 
@@ -46,7 +53,7 @@ public class MenuAdministrador extends JFrame{
         btnEmpleados.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Empleados empleado=new Empleados("Agregar Empleado");
+                Empleados empleado=new Empleados("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
                 empleado.setVisible(true);
                 dispose();
             }
@@ -54,7 +61,7 @@ public class MenuAdministrador extends JFrame{
     }
 
     public static void main(String[] args) {
-        MenuAdministrador administrador=new MenuAdministrador("Modulo de Administracion");
+        MenuAdministrador administrador=new MenuAdministrador("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
         administrador.setVisible(true);
     }
 

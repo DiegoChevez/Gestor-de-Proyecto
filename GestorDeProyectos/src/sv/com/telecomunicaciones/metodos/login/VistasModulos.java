@@ -1,6 +1,7 @@
 package sv.com.telecomunicaciones.metodos.login;
 
 import sv.com.telecomunicaciones.vistas.Login;
+import sv.com.telecomunicaciones.vistas.administrador.MenuAdministrador;
 import sv.com.telecomunicaciones.vistas.funcionales.Menu;
 import sv.com.telecomunicaciones.vistas.programador.MenuProgramador;
 import sv.com.telecomunicaciones.vistas.desarrollador.MenuDesarrollador;
@@ -26,6 +27,9 @@ public class VistasModulos {
 			case "Administrador":
 				JOptionPane.showMessageDialog(null, "Usted es un Administrador", "Administrador",
 						JOptionPane.INFORMATION_MESSAGE);
+				MenuAdministrador menuAdministrador=new MenuAdministrador("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
+				menuAdministrador.setVisible(true);
+				login.dispose();
 				/*MenuAdministrador MenuAdmin = new MenuAdministrador("title");
 				MenuAdmin.setVisible(true);*/
 				break;

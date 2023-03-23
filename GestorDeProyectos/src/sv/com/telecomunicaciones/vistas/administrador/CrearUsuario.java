@@ -15,12 +15,21 @@ public class CrearUsuario extends JFrame {
     private JButton btnAddUser;
     private JTable tblEmpleadosView;
     private JLabel lblEmpleado;
+    private int idTrabajador;
+    private int idUsuario;
+    private String rolTrabajador;
+    private String areaTrabajador;
+
     DefaultTableModel modelo = null;
 
 
     EmployeeData employeeData=new EmployeeData();
-    public CrearUsuario (String title){
+    public CrearUsuario (String title, int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado){
         super(title);
+        this.idUsuario=idUser;
+        this.idTrabajador=idEmpleado;
+        this.rolTrabajador = rolEmpleado;
+        this.areaTrabajador = areaEmpleado;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(pnlUsers);
         this.setMinimumSize(new Dimension(600,600));
@@ -32,7 +41,7 @@ public class CrearUsuario extends JFrame {
     btnAddUser.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            FormularioUsuario formularioUsuario=new FormularioUsuario("Crear");
+            FormularioUsuario formularioUsuario=new FormularioUsuario("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
             int filaSeleccionada = tblEmpleadosView.getSelectedRow();
             Object nameUser = tblEmpleadosView.getValueAt(filaSeleccionada,1);
             Object surnameUser = tblEmpleadosView.getValueAt(filaSeleccionada,2);
@@ -50,7 +59,7 @@ public class CrearUsuario extends JFrame {
     btnRegresar.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            Usuarios User=new Usuarios ("Usuarios");
+            Usuarios User=new Usuarios ("Sistema DEV", idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
             User.setVisible(true);
             dispose();
 

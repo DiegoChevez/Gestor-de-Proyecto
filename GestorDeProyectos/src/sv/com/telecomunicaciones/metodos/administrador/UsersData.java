@@ -22,7 +22,7 @@ public class UsersData {
             stmt.setInt(index++, formularioUsuario.setIdEmployee());
             stmt.setString(index++, formularioUsuario.setName());
             stmt.setString(index++, formularioUsuario.setName());
-            stmt.setString(index++, formularioUsuario.setSurnameUser();
+            stmt.setString(index++, formularioUsuario.setSurnameUser());
 
             System.out.println("Ejecutando query:" + SQL_INSERT);
             rows = stmt.executeUpdate();//no. registros afectados

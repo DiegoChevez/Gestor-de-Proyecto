@@ -17,6 +17,10 @@ public class FormularioUsuario extends JFrame {
 
     private String nameUser;
     private String surnameUser;
+    private int idTrabajador;
+    private int idUsuario;
+    private String rolTrabajador;
+    private String areaTrabajador;
 
 
 private String name;
@@ -43,8 +47,12 @@ private String name;
         this.surnameUser = surnameUser;
     }
 
-    public FormularioUsuario (String title){
+    public FormularioUsuario (String title, int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado){
         super(title);
+        this.idUsuario=idUser;
+        this.idTrabajador=idEmpleado;
+        this.rolTrabajador = rolEmpleado;
+        this.areaTrabajador = areaEmpleado;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(pnlCreateUsers);
         this.setMinimumSize(new Dimension(600,600));
@@ -60,7 +68,7 @@ private String name;
         btnRegresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                CrearUsuario crearUsuario=new CrearUsuario("Crear usuario");
+                CrearUsuario crearUsuario=new CrearUsuario("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
                 crearUsuario.setVisible(true);
                 dispose();
 

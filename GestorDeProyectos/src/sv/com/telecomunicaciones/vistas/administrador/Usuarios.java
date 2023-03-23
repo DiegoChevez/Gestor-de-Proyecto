@@ -16,11 +16,19 @@ public class Usuarios extends JFrame {
     private JButton btnRegresar;
     private JButton btnAddEmpleado;
     private JButton btnExecute;
+    private int idTrabajador;
+    private int idUsuario;
+    private String rolTrabajador;
+    private String areaTrabajador;
     DefaultTableModel modelo = null;
    UsersData usersData=new UsersData();
 
-    public Usuarios (String title){
+    public Usuarios (String title, int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado){
         super(title);
+        this.idUsuario=idUser;
+        this.idTrabajador=idEmpleado;
+        this.rolTrabajador = rolEmpleado;
+        this.areaTrabajador = areaEmpleado;
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(pnlUser);
         this.setMinimumSize(new Dimension(600,600));
@@ -31,7 +39,7 @@ public class Usuarios extends JFrame {
     btnAddEmpleado.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            CrearUsuario crearUsuario=new CrearUsuario("Crear usuario");
+            CrearUsuario crearUsuario=new CrearUsuario("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
             crearUsuario.setVisible(true);
             dispose();
 
@@ -41,7 +49,7 @@ public class Usuarios extends JFrame {
     btnExecute.addActionListener(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            ModificarUsuarios modificarUsuarios=new ModificarUsuarios("Modificar Usuarios");
+            ModificarUsuarios modificarUsuarios=new ModificarUsuarios("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
             modificarUsuarios.setVisible(true);
             dispose();
 
@@ -51,16 +59,12 @@ public class Usuarios extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            MenuAdministrador administrador=new MenuAdministrador("Modulo de Administracion");
+            MenuAdministrador administrador=new MenuAdministrador("Sistema DEV",idUsuario,idTrabajador,rolTrabajador,areaTrabajador);
             administrador.setVisible(true);
             dispose();
 
         }
     });
 
-
-
-
     }
-
 }
