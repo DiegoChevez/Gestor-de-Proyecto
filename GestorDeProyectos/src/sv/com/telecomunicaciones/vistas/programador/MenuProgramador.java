@@ -13,7 +13,12 @@ public class MenuProgramador extends JFrame {
 	private JPanel pnlMenuProgramador;
 	private JButton btnRegresar;
 
-	public MenuProgramador(String title) {
+	private int idTrabajador;
+	private int idUsuario;
+	private String rolTrabajador;
+	private String areaTrabajador;
+
+	public MenuProgramador(String title,int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado) {
 		super(title);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setContentPane(pnlMenuProgramador);
@@ -21,12 +26,16 @@ public class MenuProgramador extends JFrame {
 		this.setLocationRelativeTo(getParent());
 
 
+		this.idUsuario=idUser;
+		this.idTrabajador=idEmpleado;
+		this.rolTrabajador = rolEmpleado;
+		this.areaTrabajador = areaEmpleado;
+
 		btnCasos.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame menuProgramador = new MenuProgramador("Dashboard - Programador");
-				JFrame casosRecibidos = new CasosRecibidos("Casos Recibidos");
-				menuProgramador.dispose();
+				CasosRecibidos casosRecibidos = new CasosRecibidos("Sistema DEVDEV",idUsuario,idTrabajador,rolTrabajador,
+						areaTrabajador);
 				casosRecibidos.setVisible(true);
 				dispose();
 			}
@@ -36,7 +45,8 @@ public class MenuProgramador extends JFrame {
 		btnBitacora.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JFrame bitacoras = new BitacoraForm("Bitacoras");
+				Bitacoras bitacoras = new Bitacoras("Sistema DEVDEV",idUsuario,idTrabajador,rolTrabajador,
+						areaTrabajador);
 				bitacoras.setVisible(true);
 				dispose();
 			}

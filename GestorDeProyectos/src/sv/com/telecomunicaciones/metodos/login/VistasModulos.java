@@ -9,14 +9,14 @@ import javax.swing.*;
 public class VistasModulos {
 	private int idTrabajador;
 	private int idUsuario;
-	private String rolEmpleado;
-	private String areaEmpleado;
+	private String rolTrabajador;
+	private String areaTrabajador;
 
 	public void VistasModulos(int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado){
 		this.idUsuario=idUser;
 		this.idTrabajador=idEmpleado;
-		this.rolEmpleado = rolEmpleado;
-		this.areaEmpleado = areaEmpleado;
+		this.rolTrabajador = rolEmpleado;
+		this.areaTrabajador = areaEmpleado;
 
 		switch(rolEmpleado) {
 			case "Administrador":
@@ -47,7 +47,8 @@ public class VistasModulos {
 				JOptionPane.showMessageDialog(null, "Usted es un programador", "Programador",
 						JOptionPane.INFORMATION_MESSAGE);
 
-				MenuProgramador menuProgramador = new MenuProgramador("Dashboard - Programador");
+				MenuProgramador menuProgramador = new MenuProgramador("Dashboard - Programador",idUsuario,
+						idTrabajador,rolTrabajador,areaTrabajador);
 				Login login = new Login("Login");
 				login.dispose();
 				menuProgramador.setVisible(true);

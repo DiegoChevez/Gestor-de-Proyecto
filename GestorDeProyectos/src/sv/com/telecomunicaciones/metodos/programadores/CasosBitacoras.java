@@ -1,22 +1,19 @@
 package sv.com.telecomunicaciones.metodos.programadores;
 
-import javax.swing.table.DefaultTableModel;
 import sv.com.telecomunicaciones.util.ConexionSQL;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 
-public class CasosRecibidosTable {
+public class CasosBitacoras {
 	ConexionSQL conexion = new ConexionSQL();
 	Connection con = conexion.conexion();
 	private int idTrabajador;
 	private int idUsuario;
 	private String rolTrabajador;
 	private String areaTrabajador;
-	public DefaultTableModel selectCasos(int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado) throws SQLException {
+
+	public DefaultTableModel selectCasosBitacoras(int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado){
 		DefaultTableModel dtm = new DefaultTableModel();
 
 		this.idUsuario=idUser;
@@ -24,11 +21,11 @@ public class CasosRecibidosTable {
 		this.rolTrabajador = rolEmpleado;
 		this.areaTrabajador = areaEmpleado;
 
-		String SQL ="SELECT casos.Id_Caso AS Caso, casos.DescripcionCaso AS Descripción, casos.ComentariosJefe, casos" +
-				".FechaFinalizacion, casos.PorcentajeAvance AS Progreso, casos.Estado FROM casos JOIN empleados ON " +
-				"casos.programador = empleados.Id_Empleado WHERE empleados.Id_Empleado =" + idTrabajador +" ORDER BY " +
-				"casos" +
-				".FechaRealizacion DESC";
+		String SQL =
+				"SELECT c.Id_Caso, COUNT(b.Caso) as NumBitacoras, CONCAT(ee.Nombres, ' ', ee.Apellidos) AS Encargado," +
+						" c.Estado FROM casos c JOIN empleados pe ON c.Programador = pe.Id_Empleado JOIN empleados ee" +
+						" ON c.Encargado = ee.Id_Empleado LEFT JOIN bitacoras b ON c.Id_Caso = b.Caso WHERE pe" +
+						".Id_Empleado = "+idTrabajador+" GROUP BY c.Id_Caso";
 
 		try {
 			//definimos un metodo sql
@@ -57,6 +54,4 @@ public class CasosRecibidosTable {
 
 		return dtm;
 	}
-
-
 }
