@@ -2,7 +2,7 @@ package sv.com.telecomunicaciones.util;
 
 import java.sql.*;
 
-public class Conexion {
+public class ConexionE {
     private static String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static String JDBC_URL = "jdbc:mysql://localhost:3306/telecomunicacionessv?zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=UTF-8&characterSetResults=UTF-8";
     private static String JDBC_USER = "root";
