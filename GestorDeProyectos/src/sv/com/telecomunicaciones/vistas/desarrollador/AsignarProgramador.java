@@ -1,8 +1,10 @@
 package sv.com.telecomunicaciones.vistas.desarrollador;
-
 import sv.com.telecomunicaciones.metodos.metodosdesarrollador.SeleccionarProgramadorDatos;
+import sv.com.telecomunicaciones.metodos.metodosdesarrollador.SeleccionarTester;
+import sv.com.telecomunicaciones.metodos.metodosdesarrollador.UpdateDesarrollador;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,10 +14,11 @@ import java.util.Calendar;
 import java.util.*;
 
 
+
 public class AsignarProgramador extends JFrame{
     private JPanel pnlProgram;
     private JLabel lblImgProgra;
-    private JTextField txtId;
+    public JTextField txtId;
     private JTextField txtSolicitante;
     private JTextField txtDescrpcion;
     private JTextField txtComentarios;
@@ -31,6 +34,7 @@ public class AsignarProgramador extends JFrame{
     private JLabel lblfecha;
     private JTextArea txtaDescripcion2;
     private JTextArea txtaComentarios;
+    private JComboBox cmbTester;
     private String idSolicitudP;
     private String solicitanteP;
     private String descripcionP;
@@ -38,10 +42,14 @@ public class AsignarProgramador extends JFrame{
     int idTrabajador;
     String rolTrabajador;
     String areaTrabajador;
-    String id = txtId.getText();
-    String estado = "En desarrollo";
+
+    public String id = txtId.getText();
     String comentario = txtaComentarios.getText();
+
     String fecha = txtFecha.getText();
+
+
+
     Calendar cal = Calendar.getInstance();
 
     /*Asignar las variables del menu de eleccion de solicitud al menu de asignar programador*/
@@ -50,6 +58,7 @@ public class AsignarProgramador extends JFrame{
         this.idSolicitudP = idSolicitudP;
         txtId.setText(idSolicitudP);
     }
+
     public void setTxtSolicitante(String solicitanteP){
         this.solicitanteP = solicitanteP;
         txtSolicitante.setText(solicitanteP);
@@ -63,11 +72,12 @@ public class AsignarProgramador extends JFrame{
 
     SeleccionarProgramadorDatos seleccionarProgramadorDatos = new SeleccionarProgramadorDatos();
 
+    SeleccionarTester seleccionarTester = new SeleccionarTester();
+
     public AsignarProgramador(String title,int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado) {
 
-
-
         super(title);
+
         this.idUsuario = idUser;
         this.idTrabajador = idEmpleado;
         this.rolTrabajador = rolEmpleado;
@@ -80,6 +90,7 @@ public class AsignarProgramador extends JFrame{
         this.setLocationRelativeTo(getParent());
 
         cmbAsignar.setModel(seleccionarProgramadorDatos.selectProgramadores());
+        cmbTester.setModel(seleccionarTester.selectTester());
 
         btnAtras.addActionListener(new ActionListener() {
             @Override
@@ -93,23 +104,32 @@ public class AsignarProgramador extends JFrame{
         btnEnviar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                enviarAsignado();
-                MenuNSolicitudes menuNSolicitudes = new MenuNSolicitudes("Menu nuevas solicitudes", idUsuario, idTrabajador, rolTrabajador, areaTrabajador);
-                menuNSolicitudes.setVisible(true);
-                dispose();
+                String id2 = txtId.getText();
+                System.out.printf(id2);
+                String Comentario = txtaComentarios.getText();
+                String fechaf = txtFecha.getText();
+                String programador1 = (String) cmbAsignar.getSelectedItem();
+                String tester = (String) cmbTester.getSelectedItem();
+                enviarAsignado(id2,Comentario,fechaf, tester, programador1);
             }
         });
     }
 
 
-    public void enviarAsignado(){
-
+    public void enviarAsignado(String id2, String Comentario, String fechaf, String tester, String programador1){
+        String programadorf = programador1;
+        String idCaso = id2;
+        String enComentario = Comentario;
+        String fecha = fechaf;
+        String testerF =tester;
+        System.out.printf(testerF);
+        System.out.printf(idCaso);
             try {
                 if (txtFecha.getText().trim().isEmpty() || txtaComentarios.getText().trim().isEmpty()) {
                     JOptionPane.showMessageDialog(null,"Rellene los campos solicitados");
                 } else {
-                    // Paso 1: verificar el formato de la fecha
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    // Paso 1: verificar el formato de la fecha 2023-03-20
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                     dateFormat.setLenient(false); // para que la validación sea estricta
                     Date date = dateFormat.parse(txtFecha.getText());
                     // Paso 2: crear una instancia de Calendar y establecer la fecha
@@ -125,14 +145,20 @@ public class AsignarProgramador extends JFrame{
                             JOptionPane.showMessageDialog(null, "Complete com los datos correctos");
                         } else {
                             JOptionPane.showMessageDialog(null, "Fecha correcta");
+                            String programador = (String) cmbAsignar.getSelectedItem();
+                            JOptionPane.showMessageDialog(null,"El programador es " +programador+ "Su comentario fue " +comentario+ "Y la fecha de finalizacion es " +fecha+ "Y el ID es"+idCaso);
+                            System.out.printf(""+id);
+                            UpdateDesarrollador updateDesarrollador = new UpdateDesarrollador();
+                            updateDesarrollador.updateCasoJF(idCaso, enComentario, fecha, testerF, programadorf);
+                            MenuNSolicitudes menuNSolicitudes = new MenuNSolicitudes("Menu nuevas solicitudes", idUsuario, idTrabajador, rolTrabajador, areaTrabajador);
+                            menuNSolicitudes.setVisible(true);
+                            dispose();
                         }
                     }
                 }
             } catch (ParseException e) {
                 JOptionPane.showMessageDialog(null,"La fecha es incorrecta");
             }
-            String programador = (String) cmbAsignar.getSelectedItem();
-            JOptionPane.showMessageDialog(null,"El programador es " +programador+ "Su comentario fue " +comentario+ "Y la fecha de finalizacion es " +fecha+ "Y el ID es"+id);
     }
         /*Fin Enviar*/
 }

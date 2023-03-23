@@ -5,7 +5,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class MenuCasosDatos {
 
-    String areaEmpleado = "General";
     private final String SQL_SELECT ="SELECT * FROM casos";
 
     public DefaultTableModel selectCaso(){

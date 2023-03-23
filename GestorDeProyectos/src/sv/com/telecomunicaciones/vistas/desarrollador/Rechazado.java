@@ -1,5 +1,8 @@
 package sv.com.telecomunicaciones.vistas.desarrollador;
 
+import sv.com.telecomunicaciones.metodos.metodosdesarrollador.CasoRechazado;
+import sv.com.telecomunicaciones.metodos.metodosdesarrollador.UpdateDesarrollador;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,6 +30,9 @@ public class Rechazado extends JFrame{
     private String IdCaso;
     private String Solicitante;
 
+    String idCaso = txtIdCaso.getText();
+
+    String razon = txtaRazon.getText();
 
     public Rechazado(String title, int idUser, int idEmpleado, String rolEmpleado, String areaEmpleado){
 
@@ -36,7 +42,9 @@ public class Rechazado extends JFrame{
         this.rolTrabajador = rolEmpleado;
         this.areaTrabajador = areaEmpleado;
 
-        System.out.println(idUser+""+idEmpleado+rolEmpleado+areaEmpleado);
+
+
+
 
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,20 +63,20 @@ public class Rechazado extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                enviarRechazo();
+                enviarRechazo(idCaso, razon);
             }
         });
     }
-    public void enviarRechazo(){
+    public void enviarRechazo(String idCaso, String razon){
+        String id = txtIdCaso.getText();
+        String razon2 = txtaRazon.getText();
+
         if (txtaRazon.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese la razon del rechazo");
         } else {
-            String id = txtIdCaso.getText();
-            String razon;
-            razon = txtaRazon.getText();
-            String rechazado = "rechazado";
-            JOptionPane.showMessageDialog(null, "El ID del caso es "+id+ "Y la razon del rechazo fue" + razon + "Y su estado ahora esta" +rechazado);
-
+            JOptionPane.showMessageDialog(null, "El ID del caso es "+id+ "Y la razon del rechazo fue" + razon );
+            CasoRechazado casoRechazado = new CasoRechazado();
+            casoRechazado.casorechazado(id, razon2);
             MenuNSolicitudes menuNSolicitudes = new MenuNSolicitudes("Menu nuevas solicitudes", idUsuario, idTrabajador, rolTrabajador, areaTrabajador);
             menuNSolicitudes.setVisible(true);
             dispose();

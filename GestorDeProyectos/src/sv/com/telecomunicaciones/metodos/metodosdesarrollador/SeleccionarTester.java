@@ -1,18 +1,18 @@
 package sv.com.telecomunicaciones.metodos.metodosdesarrollador;
 
 import sv.com.telecomunicaciones.util.ConexionC;
+
 import javax.swing.*;
-import java.sql.*;
-import sv.com.telecomunicaciones.util.ConexionSQL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import sv.com.telecomunicaciones.vistas.desarrollador.AsignarProgramador;
-
-
-public class SeleccionarProgramadorDatos {
+public class SeleccionarTester {
 
     final String SQL_SELECT = "SELECT Nombres FROM Empleados";
 
-    public DefaultComboBoxModel selectProgramadores() {
+    public DefaultComboBoxModel selectTester() {
         DefaultComboBoxModel dtm = new DefaultComboBoxModel();
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -21,6 +21,7 @@ public class SeleccionarProgramadorDatos {
             conn = ConexionC.getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
             rs = stmt.executeQuery();
+//Creando las filas para el JTable
             while (rs.next()) {
                 dtm.addElement(rs.getObject(1));
             }
@@ -33,6 +34,4 @@ public class SeleccionarProgramadorDatos {
         }
         return dtm;
     }
-
-
 }
